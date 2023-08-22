@@ -67,11 +67,37 @@ values
 insert into produto  (nome, descricao, data_fabricacao, estoque, valor_unitario, id_usuario, id_categoria) 
 values 
 ('televisão', 'smart tv LG 60', '11-09-2022', 10, 3200, 1, 1), --Eletrônico 1
-('smartphone', 'moto g31 128g', '09-02-2021', 05, 1000, 2, 2), --Telefonia 2
-('aspirador ', 'aspirador de pó mondial asp 1450', '18-08-2022', 08, 290, 3, 3), --Eletrodomésticos
-('furadeira', 'furadeira bosh 1200', '21-11-2021', 06, 500, 4, 4), --Construção
-('serra ', 'serra tico tico  philco ptt01', '15-06-2022', 06, 190, 5, 4), --Construção
-('batedeira', 'batedeira planetária mondial 700w', '02-11-2022', 08, 380, 6, 3); --Eletrodomésticos
+('smartphone', 'moto g31 128g', '09-02-2021', 05, 1000, 1, 1), --Eletrônico 1
+('aspirador ', 'aspirador de pó mondial asp 1450', '18-08-2022', 08, 290, 3, 2), --Eletrodomésticos
+('furadeira', 'furadeira bosh 1200', '21-11-2021', 06, 500, 4, 3), --Construção
+('serra ', 'serra tico tico  philco ptt01', '15-06-2022', 06, 190, 5, 3), --Construção
+('batedeira', 'batedeira planetária mondial 700w', '02-11-2022', 08, 380, 3, 2), --Eletrodomésticos
+('Camiseta', 'Polo Piquet Azul GG', '01-08-2023', 20, 100, 2, 4), -- Roupa
+('Caixa bombom' 'Ferrero Rocher 8Un','27-07-2023', 5, 24, 6, 5); -- Alimentos
+
+
+-- Vitor Mello
+INSERT	INTO categoria (nome, descricao) VALUES
+('Eletrônico', 'Produtos eletrônicos em geral'),
+('Eletrodomésticos', 'Aparelhos de uso domestico'),
+('Construção','Materiais e equipamentos para construção em geral'),
+('Roupa', 'Vestuário em geral'),
+('Alimentos', 'Comidas, bebidas e afins');
+
+INSERT	INTO pedido (data_pedido, id_produto, id_usuario_comprador) VALUES	
+('01-08-2023', 1, 7),
+('02-08-2023', 2, 3),
+('03-08-2023', 3, 1),
+('04-08-2023', 4, 2),
+('05-08-2023', 5, 6),
+('06-08-2023', 6, 4);
+
+
+
+
+
+
+
 
 
 
