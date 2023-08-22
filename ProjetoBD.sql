@@ -92,6 +92,19 @@ INSERT	INTO pedido (data_pedido, id_produto, id_usuario_comprador) VALUES
 ('05-08-2023', 5, 6),
 ('06-08-2023', 6, 4);
 
+-- Breno Xavier
+INSERT INTO pedido_produto (id, id_produtos,id_pedidos )VALUES
+( 1, 7, 1),
+( 2, 3, 2),
+( 3, 1, 3),
+( 4, 2, 4),
+( 5, 6, 5),
+( 6, 4, 6);
+
+UPDATE produto SET estoque = 7 WHERE id = 8;
+
+DELETE FROM categoria WHERE id = 5;
+
 
 
 
