@@ -73,7 +73,7 @@ values
 ('serra ', 'serra tico tico  philco ptt01', '15-06-2022', 06, 190, 5, 3), --Construção
 ('batedeira', 'batedeira planetária mondial 700w', '02-11-2022', 08, 380, 3, 2), --Eletrodomésticos
 ('Camiseta', 'Polo Piquet Azul GG', '01-08-2023', 20, 100, 2, 4), -- Roupa
-('Caixa bombom' 'Ferrero Rocher 8Un','27-07-2023', 5, 24, 6, 5); -- Alimentos
+('Caixa bombom', 'Ferrero Rocher 8Un','27-07-2023', 5, 24, 6, 5); -- Alimentos
 
 
 -- Vitor Mello
@@ -105,8 +105,23 @@ UPDATE produto SET estoque = 7 WHERE id = 8;
 
 DELETE FROM categoria WHERE id = 5;
 
+-- Arthur Monteiro
 
+--a. Pelo menos 2 com algum tipo de junção
+SELECT produto.nome, categoria.nome 
+FROM produto
+JOIN categoria ON produto.id_categoria = categoria.id
 
+SELECT usuario.nome AS id_usuario, produto.nome,produto.estoque
+FROM produto
+JOIN usuario ON produto.id_usuario = usuario.id
+WHERE produto.estoque > 0;
+
+--b. Pelo menos 1 com usando count() e group by()
+SELECT categoria.nome, COUNT(*) AS QTDproduto
+FROM produto
+JOIN categoria ON produto.id_categoria = categoria.id
+GROUP BY categoria.nome
 
 
 
