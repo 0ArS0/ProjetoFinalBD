@@ -1,7 +1,8 @@
 --Projeto Final Grupo 4
---Mateus Oliveira
+
 Pragma foreing_key = on;
 
+--Mateus Oliveira
 CREATE table usuario (
 id integer primary key autoincrement not null,
 nome text,
@@ -43,13 +44,11 @@ foreign key (id_produto) references pedido_produto(id_produtos)
 foreign key (id_usuario_comprador)references usuario(id)
 );
 
-
 create table pedido_produto(
 id integer primary key autoincrement not null,
 id_produtos integer,
 foreign key (id_produtos)references produto(id)
 );
-
 
 -- Wallace Henriques
 insert into usuario (nome, endereco, telefone, celular, nome_usuario, email, cpf, data_nasc) 
@@ -74,7 +73,6 @@ values
 ('Camiseta', 'Polo Piquet Azul GG', '01-08-2023', 20, 100, 2, 4), -- Roupa
 ('Caixa bombom', 'Ferrero Rocher 8Un','27-07-2023', 5, 24, 6, 5); -- Alimentos
 
-
 -- Vitor Mello
 INSERT	INTO categoria (nome, descricao) VALUES
 ('Eletrônico', 'Produtos eletrônicos em geral'),
@@ -93,20 +91,19 @@ INSERT	INTO pedido (data_pedido, id_produto, id_usuario_comprador) VALUES
 ('06-08-2023', 6, 4);
 
 -- Breno Xavier
-INSERT INTO pedido_produto (id, id_produtos,id_pedidos )VALUES
-( 1, 7, 1),
-( 2, 3, 2),
-( 3, 1, 3),
-( 4, 2, 4),
-( 5, 6, 5),
-( 6, 4, 6);
+INSERT INTO pedido_produto (id, id_produtos)VALUES
+(1, 7),
+(2, 3),
+(3, 1),
+(4, 2),
+(5, 6),
+(6, 4);
 
 UPDATE produto SET estoque = 7 WHERE id = 8;
 
 DELETE FROM categoria WHERE id = 5;
 
 -- Arthur Monteiro
-
 --a. Pelo menos 2 com algum tipo de junção
 SELECT produto.nome, categoria.nome 
 FROM produto
@@ -147,9 +144,8 @@ SELECT nome,nome_usuario
 FROM usuario u 
 WHERE nome_usuario like 'F%'
 
-
 --d. 1 SQL para construção de nota fiscal
-
+--Todos
 SELECT pedido.data_pedido, usuario.nome, produto.descricao , produto.valor_unitario  
 from pedido
 inner join usuario on pedido.id_usuario_comprador = usuario.id  
