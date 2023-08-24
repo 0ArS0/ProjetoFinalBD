@@ -1,8 +1,8 @@
 --Projeto Final Grupo 4
-
 Pragma foreing_key = on;
 
---Mateus Oliveira
+--Mateus Oliveira(
+-- 2. SQL de criação das tabelas (DDL)
 CREATE table usuario (
 id integer primary key autoincrement not null,
 nome text,
@@ -33,24 +33,27 @@ id integer primary key autoincrement not null,
 nome text,
 descricao text
 );
+--)
 
--- Carlos Paz
+-- Carlos Paz(
 create table pedido(
 id integer primary key autoincrement not null,
 id_usuario_comprador integer,
 data_pedido date,
-id_produto integer,
-foreign key (id_produto) references pedido_produto(id_produtos)
 foreign key (id_usuario_comprador)references usuario(id)
 );
 
 create table pedido_produto(
 id integer primary key autoincrement not null,
 id_produtos integer,
-foreign key (id_produtos)references produto(id)
+id_pedidos integer,
+foreign key (id_produtos)references produto(id),
+foreign key (id_pedidos)references pedido(id)
 );
+--)
 
--- Wallace Henriques
+-- Wallace Henriques(
+--3. SQL de inserção de dados nas tabelas (pelo menos 5 registros em cada uma) (DML)
 insert into usuario (nome, endereco, telefone, celular, nome_usuario, email, cpf, data_nasc) 
 values 
 ('Pedro de Souza', 'Rua Matias de Souza nº 52', '011 1111-0000', '11 99818-1118', 'Psouza', 'psouza_@gmail.com', '987.654.321-02', '2000-08-15'),
@@ -72,8 +75,9 @@ values
 ('batedeira', 'batedeira planetária mondial 700w', '02-11-2022', 08, 380, 3, 2), --Eletrodomésticos
 ('Camiseta', 'Polo Piquet Azul GG', '01-08-2023', 20, 100, 2, 4), -- Roupa
 ('Caixa bombom', 'Ferrero Rocher 8Un','27-07-2023', 5, 24, 6, 5); -- Alimentos
+--)
 
--- Vitor Mello
+-- Vitor Mello(
 INSERT	INTO categoria (nome, descricao) VALUES
 ('Eletrônico', 'Produtos eletrônicos em geral'),
 ('Eletrodomésticos', 'Aparelhos de uso domestico'),
@@ -81,29 +85,35 @@ INSERT	INTO categoria (nome, descricao) VALUES
 ('Roupa', 'Vestuário em geral'),
 ('Alimentos', 'Comidas, bebidas e afins');
 
-INSERT	INTO pedido (data_pedido, id_produto, id_usuario_comprador) VALUES	
-('01-08-2023', 1, 7),
-('02-08-2023', 2, 3),
-('03-08-2023', 3, 1),
-('04-08-2023', 4, 2),
-('04-08-2023', 1, 2),
-('05-08-2023', 5, 6),
-('06-08-2023', 6, 4);
+INSERT	INTO pedido (data_pedido, id_usuario_comprador) VALUES	
+('01-08-2023',7),
+('02-08-2023',3),
+('03-08-2023',1),
+('04-08-2023',2),
+('04-08-2023',2),
+('05-08-2023',6),
+('04-08-2023',2);
+--)
 
--- Breno Xavier
-INSERT INTO pedido_produto (id, id_produtos)VALUES
-(1, 7),
-(2, 3),
-(3, 1),
-(4, 2),
-(5, 6),
-(6, 4);
+-- Breno Xavier(
+INSERT INTO pedido_produto (id, id_produtos, id_pedidos)VALUES
+(1,7,1),
+(2,3,2),
+(3,1,3),
+(4,2,4),
+(5,6,5),
+(6,4,6),
+(7,2,7);
 
+--4. Um comando SQL de atualização em algum registro em uma tabela (DML)
 UPDATE produto SET estoque = 7 WHERE id = 8;
 
+--5. Um comando SQL de exclusão de algum registro em uma tabela (DML)
 DELETE FROM categoria WHERE id = 5;
+--)
 
--- Arthur Monteiro
+
+-- Arthur Monteiro(
 --a. Pelo menos 2 com algum tipo de junção
 SELECT produto.nome, categoria.nome 
 FROM produto
@@ -119,7 +129,9 @@ SELECT categoria.nome, COUNT(*) AS QTDproduto
 FROM produto
 JOIN categoria ON produto.id_categoria = categoria.id
 GROUP BY categoria.nome
+--)
 
+-- Todos(
 --c. Uma consulta livre
 -- Vitor Mello
 select nome,
@@ -143,13 +155,19 @@ order by estoque desc
 SELECT nome,nome_usuario
 FROM usuario u 
 WHERE nome_usuario like 'F%'
+--)
 
+--Todos(
 --d. 1 SQL para construção de nota fiscal
---Todos
-SELECT pedido.data_pedido, usuario.nome, produto.descricao , produto.valor_unitario  
-from pedido
-inner join usuario on pedido.id_usuario_comprador = usuario.id  
-Inner Join produto on pedido.id_produto = produto.id 
-WHERE pedido.id_usuario_comprador  = 2
-
-
+SELECT 
+	p.data_pedido,
+	u.nome,
+	pr.descricao, 
+	pr.valor_unitario as valor
+from pedido_produto pp 
+inner join pedido p on pp.id_pedidos = p.id 
+inner join usuario u on p.id_usuario_comprador = u.id
+Inner Join produto pr on pp.id_produtos = pr.id
+WHERE p.id_usuario_comprador = 2
+ORDER BY valor DESC 
+--)
